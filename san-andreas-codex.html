@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кодексы штата Сан-Андреас — справочник</title>
+<style>
+  :root{
+    --bg:#0e1220;
+    --panel:#181f36;
+    --panel2:#1f2745;
+    --line:#2b3560;
+    --ink:#eaf0ff;
+    --muted:#9aa7cc;
+    --accent:#58c7f3;
+    --federal:#ff9d66;
+    --regional:#9dd8ff;
+    --sev-small:#7fd1a8;
+    --sev-med:#ffd166;
+    --sev-heavy:#ff9d66;
+    --sev-critical:#ff6b6b;
+    --card:#151b30;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    line-height:1.55;
+  }
+  a{color:var(--accent);}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+  header.hero{
+    background:linear-gradient(160deg,#101735 0%,#0c1329 55%,#0e1220 100%);
+    border-bottom:1px solid var(--line);
+    padding:52px 0 40px;
+  }
+  header.hero .kicker{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    margin:0 0 10px;font-weight:600;
+  }
+  header.hero h1{
+    font-size:clamp(28px,5vw,44px);margin:0 0 12px;font-weight:800;line-height:1.1;
+  }
+  header.hero h1 span{color:var(--accent)}
+  header.hero p.lead{color:var(--muted);max-width:640px;margin:0;font-size:16px}
+
+  nav.tabs{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,18,32,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.tabs .tablinks{display:flex;gap:6px;padding:0;margin:0;list-style:none;overflow-x:auto}
+  nav.tabs button{
+    background:none;border:none;color:var(--muted);font:inherit;font-weight:600;
+    padding:14px 14px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;font-size:14px;
+  }
+  nav.tabs button:hover{color:var(--ink)}
+  nav.tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+  .toolbar{display:flex;justify-content:flex-end;gap:14px;padding:14px 0;align-items:center;flex-wrap:wrap}
+  .search{
+    background:var(--panel);border:1px solid var(--line);color:var(--ink);
+    border-radius:10px;padding:9px 14px;font:inherit;width:min(340px,100%);outline:none;
+  }
+  .search:focus{border-color:var(--accent)}
+  .toolbar .hint{color:var(--muted);font-size:13px}
+  .toolbar .hint b{color:var(--ink)}
+
+  main{padding:8px 0 60px}
+  section.page{display:none}
+  section.page.active{display:block}
+
+  .section-head{margin:34px 0 16px}
+  .section-head h2{font-size:24px;margin:0 0 6px}
+  .section-head p{color:var(--muted);margin:0;max-width:720px}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;margin:0 0 14px;
+  }
+  .article{position:relative}
+  .article .art-title{
+    display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;
+    font-weight:700;font-size:16px;margin:0 0 8px;
+  }
+  .badge{
+    display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;
+    border-radius:6px;padding:2px 8px;flex:0 0 auto;line-height:1.6;
+  }
+  .b-f{background:rgba(255,157,102,.16);color:var(--federal);border:1px solid rgba(255,157,102,.4)}
+  .b-r{background:rgba(157,216,255,.14);color:var(--regional);border:1px solid rgba(157,216,255,.35)}
+  .sev{display:inline-block;font-size:11px;border-radius:6px;padding:2px 8px;font-weight:700}
+  .sev-1,.sev-2{background:rgba(127,209,168,.15);color:var(--sev-small)}
+  .sev-3{background:rgba(255,209,102,.14);color:var(--sev-med)}
+  .sev-4{background:rgba(255,157,102,.16);color:var(--sev-heavy)}
+  .sev-5{background:rgba(255,107,107,.16);color:var(--sev-critical)}
+  .article p{margin:0 0 6px;color:#dfe7fb}
+  .penalty{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:14px}
+  .penalty b{color:var(--accent);font-weight:600}
+  .comment{
+    margin-top:8px;font-size:13.5px;color:var(--muted);
+    background:var(--panel2);border-radius:8px;padding:8px 12px;
+  }
+  .comment b{color:var(--ink)}
+
+  .chip{display:inline-block;margin-right:6px;margin-bottom:6px}
+  .ch-priority{
+    font-size:12px;font-weight:700;color:var(--ink);
+    background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:3px 10px;
+  }
+  .ch-priority small{color:var(--muted);font-weight:500}
+
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14.5px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.02em}
+  td b{color:#fff}
+  .table-card{overflow-x:auto}
+
+  ul.tight{margin:6px 0 4px;padding-left:20px}
+  ul.tight li{margin-bottom:5px}
+  ol.num{margin:6px 0 4px;padding-left:22px}
+  ol.num li{margin-bottom:7px}
+
+  .step-flow{
+    counter-reset:step;list-style:none;padding:0;margin:10px 0 0;
+    display:grid;gap:8px;
+  }
+  .step-flow li{
+    counter-increment:step;background:var(--panel);border:1px solid var(--line);
+    border-radius:10px;padding:10px 14px;padding-left:52px;position:relative;
+  }
+  .step-flow li::before{
+    content:counter(step);position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    width:28px;height:28px;border-radius:8px;background:var(--accent);color:#08101f;
+    font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;
+  }
+  .step-flow b{color:var(--accent)}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 0;color:var(--muted);font-size:13.5px}
+  .legend .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+  .metric{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .metric .m-val{font-size:22px;font-weight:800;color:var(--accent)}
+  .metric .m-lab{color:var(--muted);font-size:13px;margin-top:2px}
+
+  footer{border-top:1px solid var(--line);color:var(--muted);padding:26px 0;font-size:13.5px}
+
+  .no-results{display:none;text-align:center;color:var(--muted);padding:40px 0}
+  .no-results.show{display:block}
+
+  @media (max-width:560px){
+    header.hero{padding:34px 0 28px}
+    .toolbar{justify-content:stretch}
+    .search{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Справочник по законодательству</p>
+    <h1>Кодексы штата <span>Сан-Андреас</span></h1>
+    <p class="lead">Самое важное из Уголовного, Процессуального и Дорожного кодексов, а также Закона об обороте оружия — для быстрого ознакомления. Полный текст см. в первоисточниках.</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <ul class="tablinks">
+      <li><button class="active" data-tab="uk">Уголовный кодекс</button></li>
+      <li><button data-tab="pk">Процессуальный кодекс</button></li>
+      <li><button data-tab="dk">Дорожный кодекс</button></li>
+      <li><button data-tab="weapon">Закон об оружии</button></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="toolbar">
+    <span class="hint">Поиск по статьям: <b id="hint-scope">УК</b></span>
+    <input type="search" id="search" class="search" placeholder="Например: кража, оружие, приоритет, штраф…">
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ============================ УК ============================ -->
+  <section class="page active" data-page="uk">
+    <div class="section-head">
+      <h2>Уголовный кодекс штата Сан-Андреас</h2>
+      <p>Единый законодательный акт штата, регулирующий правоотношения, возникающие вследствие совершения лицом преступления (наказуемого, общественно опасного деяния).</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Классификация преступлений</h3>
+      <p style="color:var(--muted)">В зависимости от тяжести преступления делятся на четыре категории. Приоритет розыска определяет порядок объявления в розыск.</p>
+      <div class="table-card">
+      <table>
+        <tr><th>Категория</th><th>Приоритет розыска</th><th>Максимум наказания</th></tr>
+        <tr><td><span class="sev sev-1">Небольшая тяжесть</span></td><td>1–2</td><td>До 30 месяцев лишения свободы</td></tr>
+        <tr><td><span class="sev sev-2">Средняя тяжесть</span></td><td>3</td><td>До 45 месяцев</td></tr>
+        <tr><td><span class="sev sev-3">Тяжкие</span></td><td>4</td><td>До 60 месяцев</td></tr>
+        <tr><td><span class="sev sev-4">Особо тяжкие</span></td><td>5</td><td>До 75 месяцев</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Виды преступлений</h3>
+      <div class="legend">
+        <span><span class="dot" style="background:var(--federal)"></span><b style="color:#fff">(F)</b> Федеральные — разбирают федеральные структуры</span>
+        <span><span class="dot" style="background:var(--regional)"></span><b style="color:#fff">(R)</b> Региональные — разбирают все уполномоченные органы</span>
+      </div>
+      <p style="color:var(--muted);margin:10px 0 0">Если федерального преступника задерживает региональная структура, задержание доводится до п. 8.1.6 включительно, после чего подаётся запрос о передаче федеральной структуре. При отсутствии ответа в течение 3 минут процесс продолжается с помещением в федеральную тюрьму.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Общие понятия</h3>
+      <ul class="tight">
+        <li><b>Основание уголовной ответственности</b> — состав преступления.</li>
+        <li><b>Совокупность преступлений</b> — две и более статьи; ответственность — за каждое по отдельности.</li>
+        <li><b>Покушение</b> — умышленные действия, непосредственно направленные на преступление, не доведённые до конца по независимым от лица обстоятельствам.</li>
+        <li><b>Соучастие</b> — умышленное совместное участие двух и более лиц. Квалификация: исполнитель, организатор, подстрекатель, пособник.</li>
+        <li><b>Группа лиц</b> — два и более участника; влечёт более строгое наказание.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Обстоятельства, исключающие преступность</h3>
+      <p style="color:var(--muted)">Не являются преступлением:</p>
+      <ul class="tight">
+        <li>причинение вреда в состоянии <b>необходимой обороны</b> (без превышения её пределов);</li>
+        <li>причинение вреда при <b>задержании</b> лица, если иными средствами это было невозможно;</li>
+        <li>причинение вреда в состоянии <b>крайней необходимости</b>;</li>
+        <li>вред при <b>обоснованном риске</b> для общественно полезной цели;</li>
+        <li>вред во исполнение обязательного приказа — отвечает лицо, отдавшее незаконный приказ (исполнение заведомо незаконного приказа не освобождает от ответственности);</li>
+        <li>деяние, совершённое <b>по неосторожности</b>, кроме прямо предусмотренных случаев.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Смягчающие и отягчающие обстоятельства</h3>
+      <div class="grid2">
+        <div class="metric"><div class="m-val" style="font-size:15px">Смягчающие</div>
+          <div class="m-lab">принуждение/зависимость; нарушение условий обороны; аморальность потерпевшего; явка с повинной; помощь потерпевшему; возмещение вреда; аффект</div>
+        </div>
+        <div class="metric"><div class="m-val" style="font-size:15px">Отягчающие</div>
+          <div class="m-lab">группа лиц; ненависть/вражда; месть за законные действия; особое лицо; особая жестокость; злоупотребление доверием; форма или документы представителя власти</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Виды наказаний (судебный порядок)</h3>
+      <div class="grid2">
+        <div class="metric"><div class="m-val">75 мес.</div><div class="m-lab">максимальный срок лишения свободы</div></div>
+        <div class="metric"><div class="m-val">30 мес.</div><div class="m-lab">порог для освобождения при первом преступлении</div></div>
+      </div>
+      <ul class="tight" style="margin-top:10px">
+        <li>Судебный штраф (сумма на усмотрение суда)</li>
+        <li>Лишение права занимать должности / «чёрный список»</li>
+        <li>Увольнение с гос. или военной службы, лишение званий и наград</li>
+        <li>Лишение свободы до 75 месяцев</li>
+        <li>Компенсация пострадавшему</li>
+        <li>Конфискация имущества</li>
+        <li>Принудительное психиатрическое лечение</li>
+        <li>Исправительные работы</li>
+      </ul>
+      <p style="color:var(--muted);margin:10px 0 0;font-size:14px"><b>Смягчение:</b> признание вины, раскаяние и пояснение мотивов (3.12), либо существенные улики/информация о других преступниках (3.13) дают право на облегчение наказания до его половины — по усмотрению судьи, прокуратуры или инициатора задержания.</p>
+    </div>
+
+    <div class="section-head" style="margin-top:40px">
+      <h2>Статьи Особенной части УК</h2>
+      <p>Краткая выжимка по главам. Точные формулировки смотрите в полном тексте.</p>
+    </div>
+
+    <!-- Глава 4 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 4. Преступления против жизни и здоровья</h2></div>
+
+      <div class="article" data-search="убийство 4.1">
+        <h4 class="art-title"><span class="badge b-r">R</span> 4.1 Убийство <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Умышленное причинение смерти другому человеку.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. + конфискация лицензии на оружие</div>
+      </div>
+
+      <div class="article" data-search="тяжкое убийство 4.2">
+        <h4 class="art-title"><span class="badge b-r">R</span> 4.2 Тяжкое убийство <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Убийство двух и более лиц, равно как убийство близких жертвы в связи с осуществлением служебной деятельности.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. + конфискация лицензии на оружие</div>
+      </div>
+
+      <div class="article" data-search="групповое убийство 4.3">
+        <h4 class="art-title"><span class="badge b-f">F</span> 4.3 Групповое убийство <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Убийство группой лиц, равно как совершённое с особой жестокостью.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес. + конфискация лицензии на оружие</div>
+      </div>
+
+      <div class="article" data-search="посягательство 4.4">
+        <h4 class="art-title"><span class="badge b-r">R</span> 4.4 Посягательство на жизнь гражданского <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Посягательство на жизнь и здоровье гражданского лица.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. + конфискация лицензии на оружие</div>
+      </div>
+
+      <div class="article" data-search="угроза 4.5">
+        <h4 class="art-title"><span class="badge b-r">R</span> 4.5 Угроза убийством <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Угроза убийством или причинением насильственных физических действий.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. и штраф 20 000$</div>
+      </div>
+
+      <div class="article" data-search="изнасилование 4.6">
+        <h4 class="art-title"><span class="badge b-r">R</span> 4.6 Изнасилование <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Изнасилование, равно как насильственные действия сексуального характера.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес.</div>
+      </div>
+
+      <div class="article" data-search="жестокое обращение животные 4.7">
+        <h4 class="art-title"><span class="badge b-r">R</span> 4.7 Жестокое обращение с животными <span class="sev sev-2">Приоритет 2</span></h4>
+        <p>Причинение животному боли и страданий, повлёкшее гибель или увечье.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 20 мес. и штраф 3 000$</div>
+      </div>
+
+      <div class="article" data-search="домогательство 4.8">
+        <h4 class="art-title"><span class="badge b-r">R</span> 4.8 Домогательство на рабочем месте <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Домогательство сексуального характера на рабочем месте.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 15 000$</div>
+        <div class="comment"><b>Комментарий:</b> посягательство на честь и достоинство государственного служащего методом морального или физического воздействия сексуального характера.</div>
+      </div>
+    </div>
+
+    <!-- Глава 5 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 5. Против свободы, чести и достоинства</h2></div>
+
+      <div class="article" data-search="похищение 5.1">
+        <h4 class="art-title"><span class="badge b-f">F</span> 5.1 Похищение человека <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Похищение человека.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес.</div>
+      </div>
+
+      <div class="article" data-search="клевета 5.3">
+        <h4 class="art-title"><span class="badge b-r">R</span> 5.3 Клевета <span class="sev sev-2">Приоритет 2</span></h4>
+        <p>Клевета в публичном выступлении, СМИ или с использованием служебного положения.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 20 мес.</div>
+      </div>
+
+      <div class="article" data-search="возбуждение ненависти 5.4">
+        <h4 class="art-title"><span class="badge b-r">R</span> 5.4 Возбуждение ненависти <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Действия, направленные на возбуждение ненависти либо вражды по отношению к человеку или группе лиц по признаку пола, расы, национальности, языка, религии и др.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 5 000$</div>
+      </div>
+
+      <div class="article" data-search="проституция 5.5">
+        <h4 class="art-title"><span class="badge b-r">R</span> 5.5 Проституция <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Занятие проституцией, равно как вовлечение лица в занятие проституцией.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 8 000$</div>
+      </div>
+    </div>
+
+    <!-- Глава 6 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 6. Против неприкосновенности имущества</h2></div>
+
+      <div class="article" data-search="кража 6.1">
+        <h4 class="art-title"><span class="badge b-r">R</span> 6.1 Кража <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Тайное хищение чужого имущества.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 4 500$</div>
+      </div>
+
+      <div class="article" data-search="ограбление 6.2">
+        <h4 class="art-title"><span class="badge b-r">R</span> 6.2 Ограбление <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Открытое хищение чужого имущества.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. и штраф 5 000$</div>
+      </div>
+
+      <div class="article" data-search="разбой 6.3">
+        <h4 class="art-title"><span class="badge b-r">R</span> 6.3 Разбой <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Нападение в целях хищения с применением насилия, опасного для жизни или здоровья, либо с угрозой его применения.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес.</div>
+      </div>
+
+      <div class="article" data-search="вымогательство 6.4">
+        <h4 class="art-title"><span class="badge b-r">R</span> 6.4 Вымогательство <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Требование передачи имущества под угрозой насилия либо уничтожения или повреждения имущества.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес.</div>
+      </div>
+
+      <div class="article" data-search="угон 6.5">
+        <h4 class="art-title"><span class="badge b-r">R</span> 6.5 Угон <span class="sev sev-2">Приоритет 2</span></h4>
+        <p>Неправомерное завладение автомобилем или иным транспортным средством либо попытка такого деяния.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 20 мес. и штраф 6 000$</div>
+      </div>
+
+      <div class="article" data-search="хулиганство 6.6">
+        <h4 class="art-title"><span class="badge b-r">R</span> 6.6 Хулиганство <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Грубое нарушение общественного порядка, выражающее явное неуважение к обществу.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 4 500$</div>
+        <div class="comment"><b>Комментарий:</b> нецензурные жесты, действия и неадекватное поведение в обществе.</div>
+      </div>
+
+      <div class="article" data-search="вандализм 6.7">
+        <h4 class="art-title"><span class="badge b-r">R</span> 6.7 Вандализм <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Умышленное уничтожение или повреждение имущества, в т.ч. путём поджога, взрыва или иным общеопасным способом.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес.</div>
+      </div>
+
+      <div class="article" data-search="массовые беспорядки 6.8">
+        <h4 class="art-title"><span class="badge b-r">R</span> 6.8 Организация массовых беспорядков <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Организация или участие в массовых беспорядках, сопровождавшихся насилием, погромами, поджогами, уничтожением имущества, применением оружия или взрывчатых веществ.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес. и штраф 10 000$</div>
+      </div>
+    </div>
+
+    <!-- Глава 7 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 7. В сфере экономической деятельности</h2></div>
+
+      <div class="article" data-search="незаконное предпринимательство 7.1">
+        <h4 class="art-title"><span class="badge b-r">R</span> 7.1 Незаконное предпринимательство <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Предпринимательская деятельность без регистрации, либо профессиональная деятельность без лицензии.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 5 000$</div>
+      </div>
+
+      <div class="article" data-search="азартные игры 7.2">
+        <h4 class="art-title"><span class="badge b-r">R</span> 7.2 Незаконная организация азартных игр <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Организация, проведение или участие в деятельности незаконного игорного бизнеса.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 7 000$</div>
+      </div>
+
+      <div class="article" data-search="банковская тайна 7.3">
+        <h4 class="art-title"><span class="badge b-r">R</span> 7.3 Разглашение коммерческой тайны <span class="sev sev-2">Приоритет 2</span></h4>
+        <p>Незаконное получение и разглашение сведений, составляющих коммерческую, налоговую или банковскую тайну.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 20 мес.</div>
+      </div>
+
+      <div class="article" data-search="уклонение налогов 7.6">
+        <h4 class="art-title"><span class="badge b-r">R</span> 7.6 Уклонение от уплаты налогов <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Предоставление заведомо ложной информации и (или) отчетности, равно как уклонение путем бездействия.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 10 000$</div>
+      </div>
+
+      <div class="article" data-search="неуплата штрафа 7.7">
+        <h4 class="art-title"><span class="badge b-r">R</span> 7.7 Неуплата штрафа <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Неуплата или уклонение от уплаты штрафа.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес.</div>
+        <div class="comment"><b>Комментарий:</b> лица, нарочно не уплачивающие максимальный лимит штрафа (75 000$).</div>
+      </div>
+    </div>
+
+    <!-- Глава 8 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 8. Против общественной безопасности</h2></div>
+
+      <div class="article" data-search="террор 8.1">
+        <h4 class="art-title"><span class="badge b-f">F</span> 8.1 Террористический акт <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Взрыв, поджог или иные действия, устрашающие население и создающие опасность для жизни людей, причинение значительного имущественного ущерба.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес.</div>
+      </div>
+
+      <div class="article" data-search="незаконное проникновение 8.2">
+        <h4 class="art-title"><span class="badge b-r">R</span> 8.2 Незаконное проникновение на режимный объект <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Проникновение на закрытый/режимный объект (LSPD, SAHP, FIB, правительство, федеральная тюрьма, форт Занкудо и др.).</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 5 500$</div>
+      </div>
+
+      <div class="article" data-search="заложник 8.3">
+        <h4 class="art-title"><span class="badge b-f">F</span> 8.3 Захват заложника <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Захват и (или) удержание лица в качестве заложника в целях принуждения к выполнению требований.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес. + конфискация лицензии на оружие</div>
+      </div>
+
+      <div class="article" data-search="ложное сообщение террор 8.4">
+        <h4 class="art-title"><span class="badge b-r">R</span> 8.4 Ложное сообщение о теракте <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Заведомо ложное сообщение о совершении террористического акта или о готовящихся подобных деяниях.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 6 500$</div>
+      </div>
+
+      <div class="article" data-search="оружие 8.6">
+        <h4 class="art-title"><span class="badge b-r">R</span> 8.6 Незаконный оборот оружия <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Незаконные приобретение, использование, хранение, перевозка, сбыт или ношение оружия, спец. средств, боеприпасов и запрещённых бронежилетов.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес., штраф 7 000$, изъятие и конфискация лицензии на оружие</div>
+        <div class="comment"><b>Комментарий:</b> список запрещённого/разрешённого вооружения регулируется Законом об обороте оружия.</div>
+      </div>
+
+      <div class="article" data-search="преступное объединение 8.7">
+        <h4 class="art-title"><span class="badge b-f">F</span> 8.7 Участие в преступном объединении</h4>
+        <p>Участие в преступном объединении при условии совершения двух и более преступлений (паттерн ОПД), а также участие в коррумпированной организации.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы от 30 до 40 мес. и штраф до 25 000$</div>
+      </div>
+
+      <div class="article" data-search="провокация 8.10">
+        <h4 class="art-title"><span class="badge b-r">R</span> 8.10 Провокация <span class="sev sev-2">Приоритет 2</span></h4>
+        <p>Действия, направленные на получение негативной реакции гражданина, равно как понуждение к нарушению законодательства.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 20 мес. и штраф 4 500$</div>
+      </div>
+
+      <div class="article" data-search="геноцид 8.13">
+        <h4 class="art-title"><span class="badge b-f">F</span> 8.13 Организация геноцида <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Организация геноцида, равно как попытка его организации.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес.</div>
+      </div>
+
+      <div class="article" data-search="руководство преступным объединением 8.15">
+        <h4 class="art-title"><span class="badge b-f">F</span> 8.15 Руководство преступным объединением</h4>
+        <p>Создание преступного объединения либо руководство им, финансирование или отдача распоряжений; руководство коррумпированной организацией.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес. и штраф до 50 000$</div>
+      </div>
+    </div>
+
+    <!-- Глава 9 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 9. Против здоровья населения и общественной нравственности</h2></div>
+
+      <div class="article" data-search="наркотики хранение 9.1">
+        <h4 class="art-title"><span class="badge b-f">F</span> 9.1 Хранение наркотических веществ <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Незаконные хранение, приобретение, перевозка и сбор наркотических веществ.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. и изъятие веществ</div>
+      </div>
+
+      <div class="article" data-search="сбыт наркотики 9.2">
+        <h4 class="art-title"><span class="badge b-f">F</span> 9.2 Сбыт и производство наркотиков <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Незаконный сбыт, пересылка и производство наркотических веществ.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. и изъятие веществ</div>
+      </div>
+    </div>
+
+    <!-- Глава 10 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 10. Против интересов государственной службы</h2></div>
+
+      <div class="article" data-search="злоупотребление 10.1">
+        <h4 class="art-title"><span class="badge b-f">F</span> 10.1 Использование служебных полномочий в корыстных целях <span class="sev sev-4">Приоритет 4</span></h4>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес.</div>
+      </div>
+
+      <div class="article" data-search="превышение полномочий 10.2">
+        <h4 class="art-title"><span class="badge b-f">F</span> 10.2 Превышение должностных полномочий <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Действия, выходящие за пределы компетенции в корыстных целях либо повлёкшие нарушение гражданских прав и свобод или вред здоровью.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес.</div>
+      </div>
+
+      <div class="article" data-search="взятка получение 10.4">
+        <h4 class="art-title"><span class="badge b-f">F</span> 10.4 Получение взятки <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Получение должностным лицом взятки в виде денежных средств.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес. и штраф 30 000$</div>
+      </div>
+
+      <div class="article" data-search="дача взятки 10.5">
+        <h4 class="art-title"><span class="badge b-r">R</span> 10.5 Дача взятки <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Дача взятки должностному лицу лично либо через посредника, попытка подкупа.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. и штраф 20 000$</div>
+      </div>
+
+      <div class="article" data-search="посягательство сотрудник 10.9">
+        <h4 class="art-title"><span class="badge b-r">R</span> 10.9 Посягательство на жизнь сотрудника <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Посягательство на жизнь уполномоченного сотрудника или военнослужащего, либо их близких, в связи с исполнением обязанностей или из мести.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес., штраф 10 000$ + конфискация лицензии на оружие</div>
+      </div>
+
+      <div class="article" data-search="оскорбление служащего 10.11">
+        <h4 class="art-title"><span class="badge b-r">R</span> 10.11 Оскорбление гос. служащего <span class="sev sev-3">Приоритет 3–4</span></h4>
+        <p>Оскорбление государственного служащего или его родственников, неуважение при исполнении обязанностей.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес., штраф 8 000$, отбывание в карцере федеральной тюрьмы</div>
+        <div class="comment"><b>Комментарий:</b> под «неуважением» — дерзость, наглость, нахальность, хамское общение.</div>
+      </div>
+
+      <div class="article" data-search="неподчинение 10.12">
+        <h4 class="art-title"><span class="badge b-r">R</span> 10.12 Неподчинение сотруднику <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Неподчинение законным требованиям уполномоченного сотрудника и прокуратуры, злонамеренное игнорирование.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 9 000$</div>
+      </div>
+
+      <div class="article" data-search="государственная тайна 10.14">
+        <h4 class="art-title"><span class="badge b-f">F</span> 10.14 Разглашение государственной тайны <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Разглашение сведений, составляющих государственную тайну, если они стали достоянием других лиц.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 15 000$</div>
+        <div class="comment"><b>Комментарий:</b> регулируется Законом «О государственной тайне штата SA».</div>
+      </div>
+    </div>
+
+    <!-- Глава 11 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 11. Против правосудия</h2></div>
+
+      <div class="article" data-search="угроза судье 11.4">
+        <h4 class="art-title"><span class="badge b-f">F</span> 11.4 Угроза судье или участнику правосудия <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Угроза или посягательство на жизнь судьи, прокурора, защитника, эксперта и других участников правосудия либо их близких.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес.</div>
+      </div>
+
+      <div class="article" data-search="неуважение к суду 11.5">
+        <h4 class="art-title"><span class="badge b-r">R</span> 11.5 Неуважение к суду <span class="sev sev-2">Приоритет 2</span></h4>
+        <p>Оскорбление участников судебного разбирательства или судьи.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес.</div>
+      </div>
+
+      <div class="article" data-search="фальсификация доказательств 11.8">
+        <h4 class="art-title"><span class="badge b-f">F</span> 11.8 Фальсификация доказательств <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Фальсификация доказательств, сокрытие улик первостепенной значимости.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. и штраф 20 000$</div>
+      </div>
+
+      <div class="article" data-search="лжесвидетельство 11.9">
+        <h4 class="art-title"><span class="badge b-r">R</span> 11.9 Лжесвидетельство <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Дача заведомо ложной информации уполномоченным сотрудникам, суду или органам власти, ложный вызов.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес. и штраф 10 000$</div>
+      </div>
+
+      <div class="article" data-search="побег 11.11">
+        <h4 class="art-title"><span class="badge b-f">F</span> 11.11 Побег из места лишения свободы <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Побег из места лишения свободы, из-под ареста или из-под стражи.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес.</div>
+      </div>
+
+      <div class="article" data-search="уклонение расследование 11.14">
+        <h4 class="art-title"><span class="badge b-f">F</span> 11.14 Уклонение от расследования и суда <span class="sev sev-4">Приоритет 4</span></h4>
+        <p>Намеренные действия, направленные на уклонение от реального уголовного срока или ответственности.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 40 мес.</div>
+        <div class="comment"><b>Комментарий:</b> попытка скрыться, неявка на вызов, смена идентификационных данных, изменение внешности пластической хирургией и т.д.</div>
+      </div>
+    </div>
+
+    <!-- Глава 12 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 12. Против военной службы</h2></div>
+
+      <div class="article" data-search="приказы военные 12.1">
+        <h4 class="art-title"><span class="badge b-f">F</span> 12.1 Неисполнение военных приказов <span class="sev sev-3">Приоритет 3</span></h4>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес.</div>
+      </div>
+
+      <div class="article" data-search="дезертирство 12.2">
+        <h4 class="art-title"><span class="badge b-f">F</span> 12.2 Дезертирство <span class="sev sev-2">Приоритет 2</span></h4>
+        <p>Самовольное оставление части (места службы), нарушение сроков службы.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 20 мес.</div>
+      </div>
+    </div>
+
+    <!-- Глава 13 -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава 13. Против конституционного строя, безопасности и порядка государства</h2></div>
+
+      <div class="article" data-search="захват власти 13.1">
+        <h4 class="art-title"><span class="badge b-f">F</span> 13.1 Насильственный захват власти <span class="sev sev-5">Приоритет 5</span></h4>
+        <p>Действия, направленные на насильственный захват или удержание власти, вооружённый мятеж, насильственное изменение конституционного строя.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 50 мес.</div>
+      </div>
+
+      <div class="article" data-search="самоуправство 13.2">
+        <h4 class="art-title"><span class="badge b-f">F</span> 13.2 Самоуправство <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Самовольное, вопреки установленному порядку, совершение действий.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес. и штраф 7 000$</div>
+      </div>
+
+      <div class="article" data-search="подделка документа 13.5">
+        <h4 class="art-title"><span class="badge b-f">F</span> 13.5 Подделка документов <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Использование незарегистрированной лицензии или подделка удостоверения / официального документа, внесение изменений в опубликованный документ.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес.</div>
+      </div>
+
+      <div class="article" data-search="форма гос структур 13.6">
+        <h4 class="art-title"><span class="badge b-f">F</span> 13.6 Использование формы гос. структуры <span class="sev sev-3">Приоритет 3</span></h4>
+        <p>Приобретение, хранение, использование или сбыт формы гос. структур, спец. средств, служебного оружия, жетонов, удостоверений.</p>
+        <div class="penalty"><b>Наказание:</b> лишение свободы до 30 мес., штраф 12 500$ и изъятие</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ ПК ============================ -->
+  <section class="page" data-page="pk">
+    <div class="section-head">
+      <h2>Процессуальный кодекс штата Сан-Андреас</h2>
+      <p>Регламентирует основания и порядок исполнения наказаний, права и обязанности участников процесса, стадии применения силы и порядок следственных действий.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Основные принципы</h3>
+      <ul class="tight">
+        <li>Равенство перед законом</li>
+        <li>Возможность обжалования действий сотрудника в суде</li>
+        <li>Достаточная доказательная база</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 6px">Презумпция невиновности</h3>
+      <p style="color:var(--muted)">Обвиняемый считается невиновным, пока виновность не доказана в установленном порядке. Подозреваемый не обязан доказывать свою невиновность — бремя доказывания лежит на обвинении. Все неустранимые сомнения трактуются в пользу обвиняемого.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Стадии применения силы</h3>
+      <p style="color:var(--muted)">Стадии соблюдаются по порядку, за исключением нестабильных или экстренных ситуаций, когда летальное оружие допустимо без последовательности.</p>
+      <ol class="num">
+        <li><b>Присутствие сотрудника</b> — психологическое воздействие</li>
+        <li><b>Устное взаимодействие</b> — приказы с обоснованием последствий</li>
+        <li><b>Силовое воздействие</b> — наручники, заламывание рук, болевые точки</li>
+        <li><b>Спецсредства нелетального действия</b> — тазер, дубинка, перцовый баллончик</li>
+        <li><b>Огнестрельное оружие</b> — при побеге, неподчинении, вооружении, угрозе жизни</li>
+      </ol>
+      <p style="color:var(--muted);margin-top:10px">Принципы: <b>адекватность</b> (не превышать полномочия), <b>безотлагательность</b> (реагировать без промедлений), избегание <b>конфликта интересов</b>.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Основания для задержания (7.2)</h3>
+      <ul class="tight">
+        <li>Лицо застигнуто при совершении преступления или сразу после</li>
+        <li>На лице/одежде/транспорте обнаружены явные следы преступления</li>
+        <li>Есть фото-, видео- или аудиофиксация преступления</li>
+        <li>Лицо пыталось скрыться</li>
+        <li>Есть ордер на задержание или арест</li>
+        <li>Предусмотрено иным нормативно-правовым документом</li>
+        <li>Лицо находится в официальном списке разыскиваемых (федеральный розыск)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Процесс задержания (ст. 8)</h3>
+      <ol class="step-flow">
+        <li><b>Надеть наручники</b>, уведомить о причине задержания</li>
+        <li><b>Представиться</b>: показать жетон/бейдж/удостоверение</li>
+        <li><b>Зачитать правило Миранды</b> (до двух раз; при неадекватном поведении — один раз)</li>
+        <li><b>Первичный обыск</b> и изъятие запрещённых предметов</li>
+        <li><b>Доставить</b> в участок/офис/тюрьму</li>
+        <li><b>Снять маску</b> (добровольно либо принудительно), идентифицировать личность</li>
+        <li><b>Право на адвоката</b>: один телефонный звонок до 5 минут, ожидание ответа 3 минуты / прибытия 10 минут</li>
+        <li><b>Допрос</b> при необходимости (до 20 минут, в присутствии адвоката или прокурора)</li>
+        <li><b>Доставить в тюрьму</b>, избрать меру пресечения</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Обязательное освобождение (ст. 15)</h3>
+      <p style="color:var(--muted)">Подозреваемый подлежит обязательному освобождению, если:</p>
+      <ul class="tight">
+        <li>отсутствуют основания для меры пресечения;</li>
+        <li>длительность процесса задержания превысила <b>60 минут</b> (с исключениями на ожидание адвоката, руководства, допрос и др., каждое до лимитов);</li>
+        <li>задержание проведено с нарушением статей кодекса (но допустимы: изменение порядка пунктов 8.1.1–8.1.6, изменение формулировки Миранды без потери смысла, порядок первичного обыска по ст. 11).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Сроки давности (ст. 16)</h3>
+      <div class="table-card">
+      <table>
+        <tr><th>Вид правонарушения</th><th>Срок давности</th></tr>
+        <tr><td>Дорожный кодекс</td><td>48 часов</td></tr>
+        <tr><td>Административный кодекс</td><td>6 суток</td></tr>
+        <tr><td>УК — небольшая тяжесть</td><td>6 суток</td></tr>
+        <tr><td>УК — средняя тяжесть</td><td>8 суток</td></tr>
+        <tr><td>УК — тяжкое / особо тяжкое</td><td>10 суток</td></tr>
+        <tr><td>Любое, если дело принято судом</td><td>12 суток</td></tr>
+        <tr><td>Паттерн организованной преступной деятельности</td><td>14 суток от последнего преступления</td></tr>
+      </table>
+      </div>
+      <p style="color:var(--muted);margin-top:8px">Подача апелляции продлевает срок на 7 суток; подтверждённый судом приговор обнуляет срок и даёт 7 суток с публикации постановления.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Обыск</h3>
+      <ul class="tight">
+        <li><b>Жилища</b> (ст. 12): только с согласия проживающих или по ордеру Генерального прокурора / решению суда. Без ордера — если подозреваемый скрылся в жилое помещение от преследования (с видеофиксацией, хранением 72 ч и уведомлением прокурора в течение 1 часа).</li>
+        <li><b>Личного автомобиля</b> (ст. 13): без ордера при преследовании, рейде, военном положении, на режимных объектах, прямых доказательствах, ориентировке в базе, плановых/внеплановых проверках.</li>
+        <li><b>На месте</b> (ст. 11): при сопротивлении, отказе подчиниться, попытке бегства, угрозах насилия, провокационном поведении.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Ордеры (ст. 19)</h3>
+      <div class="table-card">
+      <table>
+        <tr><th>Ордер</th><th>Кто выдаёт</th><th>Когда</th></tr>
+        <tr><td>На задержание</td><td>Генпрокурор, зам. генпрокурора (или губернатор при их отсутствии)</td><td>На основании доказательств, расследования или судебного разбирательства</td></tr>
+        <tr><td>На арест</td><td>Судья или Генпрокурор</td><td>На основании решения суда или прокурорского расследования</td></tr>
+        <tr><td>На обыск</td><td>Генпрокурор, зам., судья</td><td>На основании доказательств</td></tr>
+        <tr><td>На рейд</td><td>Генпрокурор, судья</td><td>По итогам расследования/суда, с неопровержимыми доказательствами</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Допрос (ст. 18)</h3>
+      <p style="color:var(--muted)">Проводится силовыми структурами и уполномоченными лицами, с полной видеофиксацией. Продолжительность — не более <b>20 минут</b>.</p>
+    </div>
+  </section>
+
+  <!-- ============================ ДК ============================ -->
+  <section class="page" data-page="dk">
+    <div class="section-head">
+      <h2>Дорожный кодекс штата Сан-Андреас</h2>
+      <p>Единый порядок дорожного движения на всей территории штата. Движение правостороннее. Штраф выписывается водителю, при неустановленной личности — владельцу.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Общие правила</h3>
+      <ul class="tight">
+        <li>Водитель обязан остановиться по первому требованию и предъявить документы</li>
+        <li>Офицер вправе провести внешний осмотр и проверить документы; досмотр закрытых отсеков — на глазах водителя и с его участием</li>
+        <li>Пассажиры и водитель остаются в авто без просьбы офицера; невыполнение может расцениваться как угроза сотруднику</li>
+        <li>Скорость: в городе — <b>до 120 км/ч</b>, на шоссе и в округе — <b>до 180 км/ч</b></li>
+        <li>За один дорожный инцидент нельзя штрафовать дважды по одной статье (120 минут на исправление)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Основные штрафы водителю</h3>
+      <div class="table-card">
+      <table>
+        <tr><th>Нарушение</th><th>Штраф</th></tr>
+        <tr><td>2.1 Управление без регистрации / номерного знака</td><td>10 000$ (+эвакуация при отсутствии водителя)</td></tr>
+        <tr><td>3.1 Управление неисправным ТС</td><td>5 000$</td></tr>
+        <tr><td>3.2 Не предъявить права</td><td>2 500$</td></tr>
+        <tr><td>3.3 Не остановиться по требованию</td><td>5 000$ и/или уголовная статья</td></tr>
+        <tr><td>3.3.1 Остановка после 2-го требования</td><td>10 000$</td></tr>
+        <tr><td>3.3.2 Нарушил 2+ статей в погоне</td><td>25 000$, лишение прав, эвакуация</td></tr>
+        <tr><td>3.3.3 Скрылся от погони</td><td>15 000$ на владельца (кроме угона)</td></tr>
+        <tr><td>3.4 Оставление места аварии</td><td>10 000$</td></tr>
+        <tr><td>3.5 Авария с пострадавшими, не оказал помощь</td><td>40 000$ и лишение прав и/или компенсация</td></tr>
+        <tr><td>3.8 Управление в нетрезвом состоянии</td><td>20 000$ и лишение прав</td></tr>
+        <tr><td>3.9 Передача управления лицу без прав</td><td>20 000$</td></tr>
+        <tr><td>3.10 Движение за колонной / кортежем</td><td>8 000$ и лишение прав</td></tr>
+        <tr><td>3.11 Телефон во время движения</td><td>2 500$</td></tr>
+        <tr><td>3.12 Опасные манёвры, опасное вождение</td><td>10 000$</td></tr>
+        <tr><td>3.13 Превышение скорости</td><td>15 000$</td></tr>
+        <tr><td>3.14 Выезд на встречную полосу</td><td>15 000$ (при повторе — +лишение)</td></tr>
+        <tr><td>3.15 Движение по ЖД путям и тротуарам</td><td>7 500$</td></tr>
+        <tr><td>4.1 Беспричинный гудок / спец. сигнал</td><td>2 500$</td></tr>
+        <tr><td>4.3 Не уступил спец. транспорту</td><td>7 500$ (при повторе — +лишение)</td></tr>
+        <tr><td>4.5 Незаконные цветографические схемы</td><td>15 000$</td></tr>
+        <tr><td>4.6 Спец. сигналы на личный транспорт</td><td>15 000$ + эвакуация + лишение прав</td></tr>
+        <tr><td>5.1 Остановка в неположенном месте</td><td>5 000$</td></tr>
+        <tr><td>5.2 Остановка не на правой стороне</td><td>3 000$</td></tr>
+        <tr><td>5.3 Не припаркован у бордюра</td><td>2 500$</td></tr>
+        <tr><td>5.4 Нарушение правил парковки</td><td>8 000$ (+эвакуация по усмотрению)</td></tr>
+        <tr><td>5.5 Парковка летательного аппарата в запрещённом месте</td><td>30 000$</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Правила парковки (5.4)</h3>
+      <p style="color:var(--muted)">Парковка запрещена: при помехах движению, блокировании выезда, на пешеходном переходе, при заграждении более 2/3 тротуара, на разделительной полосе, против движения, на мостах/туннелях, на шоссе (кроме обочины), ближе 3 м от гидранта, на автобусных остановках, на ЖД путях, на красных и жёлтых отметках, с нарушением разметки, на газонах.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 8px">Пешеходы (ст. 6)</h3>
+      <ul class="tight">
+        <li>6.1 Движение по тротуару/обочине; запрещено беспорядочно двигаться по проезжей части — штраф 2 500$</li>
+        <li>6.2 Воздержаться от перехода при приближении ТС со спец. сигналом — штраф 3 000$</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ ОРУЖИЕ ============================ -->
+  <section class="page" data-page="weapon">
+    <div class="section-head">
+      <h2>Закон об обороте оружия штата Сан-Андреас</h2>
+      <p>Полный текст закона: виды оружия, правила оборота гражданского и служебного оружия, самооборона, лицензии и коллекционирование.</p>
+    </div>
+
+    <!-- ГЛАВА I -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава I. Общие положения</h2></div>
+
+      <div class="article" data-search="оружие определение 1.1">
+        <h4 class="art-title">1.1 Понятие оружия</h4>
+        <p>Оружие — устройства и предметы, конструктивно предназначенные для поражения живой или иной цели, подачи сигналов.</p>
+      </div>
+
+      <div class="article" data-search="огнестрельное оружие 1.2">
+        <h4 class="art-title">1.2 Огнестрельное оружие</h4>
+        <p>Оружие, предназначенное для механического поражения цели на расстоянии метательным снаряжением, получающим направленное движение за счёт энергии порохового или иного заряда.</p>
+      </div>
+
+      <div class="article" data-search="холодное оружие 1.3">
+        <h4 class="art-title">1.3 Холодное оружие</h4>
+        <p>Оружие, предназначенное для поражения цели при помощи мускульной силы человека при непосредственном контакте с объектом поражения.</p>
+      </div>
+
+      <div class="article" data-search="сигнальное оружие 1.4">
+        <h4 class="art-title">1.4 Сигнальное оружие</h4>
+        <p>Оружие, конструктивно предназначенное только для подачи световых, дымовых или звуковых сигналов.</p>
+      </div>
+
+      <div class="article" data-search="виды оружия классификация 1.5">
+        <h4 class="art-title">1.5 Классификация оружия</h4>
+        <p>Оружие по целям использования и основным параметрам подразделяется на:</p>
+        <ul class="tight">
+          <li>Гражданское;</li>
+          <li>Служебное;</li>
+          <li>Коллекционное.</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="разрешенное оружие ammo лицензия 1.6">
+        <h4 class="art-title">1.6 Разрешённое огнестрельное оружие «AMMO»</h4>
+        <p>Разрешённое огнестрельное оружие с маркировкой «AMMO» при наличии соответствующей лицензии на оружие:</p>
+        <ul class="tight">
+          <li>Пистолет, винтажный пистолет;</li>
+          <li>ПП, ПП SMG.</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="патроны калибр 1.7">
+        <h4 class="art-title">1.7 Патроны</h4>
+        <ul class="tight">
+          <li>Патроны — изделие, применяемое в огнестрельном оружии, имеющее разный калибр. Разрешено ношение патронов разного калибра при наличии лицензии на оружие.</li>
+          <li>Хранение и приобретение патронов — исключительно в специализированных оружейных магазинах (Ammunation).</li>
+          <li>Приобретение, хранение и ношение патронов другого вида разрешается исключительно владельцам лицензии коллекционеров оружия штата SA и сотрудникам правоохранительных или силовых структур при исполнении обязанностей.</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="бронежилет 1.8">
+        <h4 class="art-title">1.8 Бронежилет</h4>
+        <ul class="tight">
+          <li>Бронежилет — элемент индивидуальной защиты человека, обеспечивающий защиту верхней части туловища (торса) от воздействия огнестрельного и холодного оружия, а также от осколков бомб, снарядов, мин и гранат.</li>
+          <li>Гражданский бронежилет — жилет из серых пластин, доступный для покупки в магазине «Ammunation»; бронежилеты пошива LUI VI и «хайповые» бронежилеты.</li>
+          <li>Бронежилеты, имеющие смену цвета, <b>запрещены</b> для использования как гражданским населением, так и сотрудникам государственных структур.</li>
+          <li>Служебный бронежилет — бронежилет с особой государственной маркировкой на груди и спине.</li>
+          <li>Чехлы для бронежилетов разрешены независимо от цветовой схемы или рисунка.</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="спец средства тазер дубинка 1.9">
+        <h4 class="art-title">1.9 Специальные средства</h4>
+        <ul class="tight">
+          <li>Виды специальных средств: тазер (пистолет-шокер), дубинки, бронежилет с маркировкой государственной структуры, бронежилет, прошедший модернизацию, балаклава, выдаваемая в гос. организации.</li>
+          <li>Сбыт специальных средств <b>запрещён</b> и преследуется по Уголовному кодексу штата San Andreas.</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="охота 1.10">
+        <h4 class="art-title">1.10 Действие закона</h4>
+        <p>Настоящий закон действует с учётом норм закона об охоте и о сохранении охотничьих ресурсов.</p>
+      </div>
+    </div>
+
+    <!-- ГЛАВА II -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава II. Положение о самообороне</h2></div>
+
+      <div class="article" data-search="самооборона жилище 2.1">
+        <h4 class="art-title">2.1 Защита жилища</h4>
+        <p>Граждане вправе защищать своё жилище от незаконных проникновений и вправе использовать своё оружие для этого. Граждане, убившие человека, незаконно проникшего на территорию жилища или угрожающего смертью на территории жилища, <b>не несут уголовной ответственности</b>.</p>
+      </div>
+
+      <div class="article" data-search="обнажение оружие общественное место 2.2">
+        <h4 class="art-title">2.2 Запрет обнажения оружия</h4>
+        <p>Гражданам запрещено обнажать и использовать оружие в общественных местах, кроме случаев самообороны, когда против гражданина совершается вооружённое нападение, либо когда гражданину угрожает безоружный человек, имеющий физиологическую комплектацию, позволяющую искалечить или убить гражданина.</p>
+      </div>
+    </div>
+
+    <!-- ГЛАВА III -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава III. Правила оборота гражданского оружия</h2></div>
+
+      <div class="article" data-search="лицензия приобретение ношение 3.1 3.2 3.3">
+        <h4 class="art-title">3.1–3.3 Обязательная лицензия</h4>
+        <ul class="tight">
+          <li>Приобретение, ношение, использование и хранение огнестрельного и холодного оружия разрешается <b>только при наличии лицензии</b> (3.1).</li>
+          <li>Лицензия на ношение, использование и хранение оружия выписывается уполномоченным сотрудником Правительства (3.2).</li>
+          <li>Оборот оружия без лицензии признаётся незаконным и является нарушением Уголовного кодекса штата San Andreas (3.3).</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="ammunation покупка 3.4 3.5 3.6">
+        <h4 class="art-title">3.4–3.6 Приобретение оружия</h4>
+        <ul class="tight">
+          <li>Гражданам разрешено использовать только оружие, приобретённое в специализированных оружейных магазинах (Ammunation). <b>Исключение:</b> владелец лицензии коллекционеров оружия штата SA (3.4).</li>
+          <li>Приобретение огнестрельного оружия разрешается только в специализированных оружейных магазинах (Ammunation) (3.5).</li>
+          <li>Приобретение огнестрельного оружия в неспециализированных местах признаётся незаконным и является нарушением УК штата Сан-Андреас (3.6).</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="открытое ношение 3.7">
+        <h4 class="art-title">3.7 Открытое ношение запрещено</h4>
+        <p>Открытое ношение огнестрельного и холодного оружия гражданским лицом запрещено и влечёт за собой ответственность.</p>
+      </div>
+
+      <div class="article" data-search="хранение сейф багажник 3.8 3.9">
+        <h4 class="art-title">3.8–3.9 Хранение оружия</h4>
+        <ul class="tight">
+          <li>Хранение разрешённого огнестрельного оружия — в багажнике транспортного средства и в месте постоянного проживания в специально оборудованном сейфе в разряженном состоянии и на предохранителе, либо в соответствующей кобуре под верхней одеждой (3.8).</li>
+          <li>За оружие, хранящееся в багажнике транспортного средства, ответственность несёт лицо, управляющее данным транспортным средством (3.9).</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="количество оружия автомобиль 3.10">
+        <h4 class="art-title">3.10 Лимит оружия в автомобиле</h4>
+        <p>Запрещено ношение или транспортировка в автомобиле <b>более 1 единицы</b> огнестрельного или холодного оружия для владельцев лицензии на оружие.</p>
+        <div class="comment"><b>Исключение:</b> сотрудники силовых структур не ограничены в ношении количества единиц в рамках имеющихся лицензий, а также в количестве единиц оружия и патронов при транспортировке в автомобиле.</div>
+      </div>
+
+      <div class="article" data-search="служебное оружие запрет 3.11">
+        <h4 class="art-title">3.11 Запрет служебного оружия гражданским</h4>
+        <p>Приобретение, ношение и хранение служебного оружия на территории всего штата запрещено и влечёт уголовную ответственность.</p>
+        <div class="comment"><b>Исключение:</b> сотрудники правоохранительных и силовых структур при исполнении обязанностей.</div>
+      </div>
+
+      <div class="article" data-search="самооборона применение 3.12 3.13 3.14">
+        <h4 class="art-title">3.12–3.14 Применение оружия</h4>
+        <ul class="tight">
+          <li>Использование огнестрельного оружия допускается в случае самообороны (3.12).</li>
+          <li>Использование холодного оружия допускается в случае самообороны (3.13).</li>
+          <li>Использование сигнального оружия допускается на территории округа Блейн или на территории, не прилегающей к государственным/федеральным объектам (3.14).</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="тазер гражданский 3.15">
+        <h4 class="art-title">3.15 Электрошоковое средство «taser»</h4>
+        <p>Использование и хранение электрошокового спец. средства «taser» гражданским запрещено, в иных законных случаях разрешено.</p>
+      </div>
+
+      <div class="article" data-search="предупреждение 3.16">
+        <h4 class="art-title">3.16 Предупреждение о применении</h4>
+        <p>Применению оружия должно предшествовать чётко выраженное предупреждение об этом лица, против которого применяется оружие, за исключением случаев, когда промедление создаёт непосредственную опасность для жизни людей или может повлечь иные тяжкие последствия. Применение оружия в состоянии необходимой обороны не должно причинить физический вред третьим лицам.</p>
+      </div>
+
+      <div class="article" data-search="контроль оборот 3.17">
+        <h4 class="art-title">3.17 Контроль за оборотом</h4>
+        <p>Контроль за оборотом гражданского оружия на территории штата осуществляют специальные органы исполнительной власти в соответствии с законодательством штата.</p>
+      </div>
+
+      <div class="article" data-search="патроны лимит 3.18">
+        <h4 class="art-title">3.18 Лимит патронов</h4>
+        <p>Максимальное количество патронов для ношения с собой при лицензии на оружие: гражданский — <b>100 патронов</b>, государственный служащий — <b>300 патронов</b> (вне спец. операций).</p>
+      </div>
+    </div>
+
+    <!-- ГЛАВА IV -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава IV. Правила оборота служебного оружия</h2></div>
+
+      <div class="article" data-search="служебное определение 4.1 4.2">
+        <h4 class="art-title">4.1–4.2 Понятие служебного оружия</h4>
+        <ul class="tight">
+          <li>Служебное оружие — оружие, имеющее зарегистрированный серийный номер, принадлежащий государственным организациям и хранящееся в соответствующих помещениях правоохранительных и силовых структур (4.1).</li>
+          <li>Оружие, приобретаемое в специализированных магазинах (Ammunation), а также покрашенное оружие, может являться служебным при наличии лицензии на оружие, в иных случаях регулируется Главой III настоящего Закона (4.2).</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="ношение оружия в руках 4.3">
+        <h4 class="art-title">4.3 Ношение оружия сотрудником</h4>
+        <ul class="tight">
+          <li>Ношение оружия в руках сотрудником государственного/федерального ведомства допускается в случаях: угрозы жизни сотруднику, угрозы жизни третьим лицам, игнорирования требований сотрудников, погони, чрезвычайного/военного положения или приказа высшего руководства.</li>
+          <li>Сотрудникам государственных организаций разрешено носить служебное оружие за спиной и/или в кобуре во время исполнения служебных обязанностей.</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="использование служебного 4.4 4.5">
+        <h4 class="art-title">4.4–4.5 Использование служебного оружия</h4>
+        <ul class="tight">
+          <li>Использование служебного оружия допускается в целях самообороны и/или выполнения служебных полномочий и иных приказов, отданных высшим руководством (4.4).</li>
+          <li>Использование служебного оружия по всему штату — только при наличии лицензии на оружие (4.5).</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="сбыт запрет 4.6">
+        <h4 class="art-title">4.6 Запрет сбыта</h4>
+        <p>Сбыт служебного оружия запрещён и преследуется по Уголовному кодексу штата San Andreas.</p>
+      </div>
+
+      <div class="article" data-search="тазер служебный 4.7">
+        <h4 class="art-title">4.7 Тазер для сотрудников</h4>
+        <p>Использование электрошокового спец. средства «taser» разрешено государственным служащим при исполнении.</p>
+      </div>
+
+      <div class="article" data-search="табельное оружие вне смены 4.8 4.9">
+        <h4 class="art-title">4.8–4.9 Табельное оружие и тазер</h4>
+        <ul class="tight">
+          <li>При окончании смены, уходе на обед и иных ситуациях, влекущих отсутствие служебной формы, табельное оружие может находиться у государственного служащего (4.8).</li>
+          <li>Для открытого ношения «taser» сотрудники правоохранительных и силовых структур в момент исполнения обязанностей должны иметь основания для этого (4.9).</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="халатность оружие 4.10">
+        <h4 class="art-title">4.10 Запрет пренебрежительного отношения</h4>
+        <p>Пренебрежительное отношение к огнестрельному оружию и спец. средствам запрещено и влечёт уголовную ответственность, равно как халатность к исполнению должностных обязательств.</p>
+      </div>
+
+      <div class="article" data-search="контроль военизированные 4.11">
+        <h4 class="art-title">4.11 Контроль за оружием военизированных организаций</h4>
+        <p>Контроль за оборотом оружия, имеющегося на вооружении государственных военизированных организаций, осуществляется уполномоченными сотрудниками внутри организации или Прокуратуры штата.</p>
+      </div>
+
+      <div class="article" data-search="запрет передачи гражданским 4.12">
+        <h4 class="art-title">4.12 Запрет передачи гражданским</h4>
+        <p>Сотрудникам силовых структур запрещена продажа, передача, дарение служебного оружия гражданским лицам.</p>
+      </div>
+    </div>
+
+    <!-- ГЛАВА V -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава V. Лицензия на оружие</h2></div>
+
+      <div class="article" data-search="лицензия определение 5.1">
+        <h4 class="art-title">5.1 Понятие лицензии</h4>
+        <p>Лицензия на оружие — разрешение, получаемое гражданским лицом, дающее право на приобретение, ношение и хранение огнестрельного и холодного оружия в соответствии со всеми разделами настоящего закона.</p>
+      </div>
+
+      <div class="article" data-search="учет лицензий 5.2">
+        <h4 class="art-title">5.2 Учёт лицензий</h4>
+        <p>Уполномоченными за учётом выданных/изъятых лицензий на оружие являются представители правоохранительных органов штата San-Andreas и уполномоченные законодательством сотрудники Правительства.</p>
+      </div>
+
+      <div class="article" data-search="аннулирование лицензии изъятие 5.3">
+        <h4 class="art-title">5.3 Аннулирование лицензии</h4>
+        <p>Лицензия на оружие может быть аннулирована и изъята при задержании только в случае нарушения статей <b>4.1, 4.2, 4.3, 4.4, 8.3, 8.6, 8.7, 10.9 УК</b> штата SA.</p>
+      </div>
+
+      <div class="article" data-search="экзамен страховка 5.4">
+        <h4 class="art-title">5.4 Условия выдачи</h4>
+        <ul class="tight">
+          <li>Лицензия не может быть выдана без проведения экзамена по знанию настоящего закона.</li>
+          <li>Лицензия не может быть выдана без наличия медицинской страховки.</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="видеозапись экзамен 5.5">
+        <h4 class="art-title">5.5 Видеофиксация экзамена</h4>
+        <p>Экзаменатор вправе вести фото-, аудио- и видеосъёмку в процессе проведения экзамена.</p>
+      </div>
+
+      <div class="article" data-search="стоимость лицензии 5.6">
+        <h4 class="art-title">5.6 Стоимость</h4>
+        <p>Лицензия на оружие является платной, её стоимость устанавливается Правительством. Процедура сдачи экзамена проводится бесплатно.</p>
+      </div>
+
+      <div class="article" data-search="фиксация выдачи 5.7">
+        <h4 class="art-title">5.7 Фиксация факта выдачи</h4>
+        <p>Экзаменатор обязан зафиксировать факт предоставления лицензии на ношение оружия.</p>
+      </div>
+
+      <div class="article" data-search="пересдача 5.8">
+        <h4 class="art-title">5.8 Пересдача экзамена</h4>
+        <p>При неудачной сдаче экзамена гражданин штата имеет полное право на пересдачу полного экзамена.</p>
+      </div>
+
+      <div class="article" data-search="обязанность изъять 5.9">
+        <h4 class="art-title">5.9 Обязанность изъятия</h4>
+        <p>Государственные/федеральные служащие должны изъять лицензию на оружие у гражданского лица либо государственного/федерального служащего за правонарушения с использованием огнестрельного оружия, в соответствии с настоящим законом и УК штата San Andreas.</p>
+      </div>
+    </div>
+
+    <!-- ГЛАВА VI -->
+    <div class="card">
+      <div class="section-head" style="margin:0 0 6px"><h2 style="font-size:20px">Глава VI. Коллекционирование оружия</h2></div>
+
+      <div class="article" data-search="право коллекционировать 6.1">
+        <h4 class="art-title">6.1 Право на коллекционирование</h4>
+        <p>Граждане имеют право коллекционировать оружие, приобретённое в специализированном магазине. Допускается покрашенное оружие, иксовые номера или частичное отсутствие номера на коллекционном оружии.</p>
+      </div>
+
+      <div class="article" data-search="обязанности коллекционера 6.2">
+        <h4 class="art-title">6.2 Обязанности коллекционера</h4>
+        <p>Владельцы лицензии коллекционера обязаны соблюдать настоящий Закон. В случае нарушения одного из пунктов Закона об «Обороте оружия SA» это приравнивается к изъятию прав на владение данной лицензией.</p>
+      </div>
+
+      <div class="article" data-search="запрещенное оружие коллекционер 6.3">
+        <h4 class="art-title">6.3 Запрещённое оружие для коллекционеров</h4>
+        <p>Список запрещённых оружий для владельцев лицензий коллекционеров:</p>
+        <ul class="tight">
+          <li>Лёгкий пулемёт Томпсон;</li>
+          <li>Тяжёлая снайперская винтовка;</li>
+          <li>Тяжёлая снайперская винтовка MK II;</li>
+          <li>Лёгкий пулемёт;</li>
+          <li>Уникальный пулемёт.</li>
+        </ul>
+        <div class="comment"><b>Исключение:</b> представители правоохранительных, силовых структур и ЧВК, владеющие лицензией коллекционера, имеют право использовать оружие, указанное в статье 6.3.</div>
+      </div>
+
+      <div class="article" data-search="иксовый номер 6.4">
+        <h4 class="art-title">6.4 Оружие с иксовым номером</h4>
+        <p>Сотрудники силовых государственных структур имеют право на использование оружия с иксовым номером при наличии лицензии «Коллекционера оружия».</p>
+      </div>
+
+      <div class="article" data-search="регистрация коллекционера 6.5">
+        <h4 class="art-title">6.5 Регистрация коллекционера</h4>
+        <p>Коллекционер обязан зарегистрироваться у Генерального Прокурора, Министра Финансов, Министра Юстиции, Министра Национальной Обороны, Вице-Губернатора или Губернатора, после чего оплатить регистрационный сбор в сумме <b>500 000$</b>.</p>
+        <div class="comment"><b>Исключение:</b> сумма для сотрудников государственных структур регламентирует статья 6.11. Решение о выдаче «лицензии коллекционера» за счёт государства (6.6) осуществляется в случаях, предусмотренных Губернатором, как вид награды или благодарности.</div>
+      </div>
+
+      <div class="article" data-search="срок действия 6.7">
+        <h4 class="art-title">6.7 Срок действия лицензии</h4>
+        <ul class="tight">
+          <li>Срок действия лицензии «Коллекционера» составляет 30 дней.</li>
+          <li>Стоимость продления лицензии коллекционера на 30 дней — <b>200 000$</b>.</li>
+          <li><b>Примечание:</b> лицензия коллекционера может быть продлена на любой срок, кратный 30 дням.</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="две лицензии 6.8">
+        <h4 class="art-title">6.8 Необходимые лицензии</h4>
+        <p>Коллекционирование оружия допускается только при наличии лицензии на владение и ношение оружия <b>и</b> лицензии на коллекционирование оружия. Выдача «лицензии коллекционера» осуществляется только при наличии лицензии на владение и ношение оружия и оплате коллекционного сбора.</p>
+      </div>
+
+      <div class="article" data-search="смена имени фамлии 6.9 6.10">
+        <h4 class="art-title">6.9–6.10 Смена имени и фамилии</h4>
+        <ul class="tight">
+          <li>Человек, сменивший имя и фамилию, имеет возможность изменить данные в реестре коллекционеров оружия при наличии номера паспорта в реестре (6.9).</li>
+          <li>Услуга по изменению/заключению для смены имени и фамилии стоит 100 000$. В случае заключения брачного договора и смены фамилии необходимо уведомить Министра Юстиции — тогда услуга бесплатна (6.10).</li>
+        </ul>
+      </div>
+
+      <div class="article" data-search="скидка гос структуры 6.11">
+        <h4 class="art-title">6.11 Льгота для гос. структур</h4>
+        <p>Сотрудники государственных структур имеют возможность приобрести лицензию коллекционера за <b>300 000$</b>. Эта возможность действует лишь на момент нахождения человека в государственной структуре.</p>
+      </div>
+
+      <div class="article" data-search="хранение икс прав 6.12">
+        <h4 class="art-title">6.12 Хранение оружия с иксовым номером</h4>
+        <p>Сотрудники правоохранительных органов и военнослужащие Национальной Гвардии имеют право на хранение оружия с иксовым номером при наличии лицензии «Коллекционера оружия».</p>
+      </div>
+
+      <div class="article" data-search="изъятие лицензии коллекционера 6.13">
+        <h4 class="art-title">6.13 Кто изымает лицензию коллекционера</h4>
+        <p>Лицензия «Коллекционера оружия» вправе быть изъята такими лицами, как: Генеральный прокурор, Вице-Губернатор или Губернатор штата.</p>
+      </div>
+
+      <div class="article" data-search="обмен между коллекционерами 6.14">
+        <h4 class="art-title">6.14 Передача и обмен</h4>
+        <p>Владельцы лицензии коллекционера имеют право на передачу и обмен оружием с лицами, у которых также имеется данная лицензия.</p>
+      </div>
+
+      <div class="article" data-search="реестр коллекционеров 6.15">
+        <h4 class="art-title">6.15 Реестр коллекционеров</h4>
+        <p>Реестр владельцев лицензий коллекционеров опубликован и ведётся на портале штата.</p>
+      </div>
+
+      <div class="article" data-search="ношение коллекционера лимит 6.16">
+        <h4 class="art-title">6.16 Лимит для коллекционера</h4>
+        <p>Владелец лицензии коллекционера имеет право на ношение при себе <b>1 единицы</b> холодного или огнестрельного оружия и транспортировку в автомобиле <b>до 3-х единиц</b> огнестрельного или холодного оружия.</p>
+      </div>
+
+      <div class="article" data-search="аннулирование повторное 6.17 6.18">
+        <h4 class="art-title">6.17–6.18 Аннулирование и запрет повторного оформления</h4>
+        <ul class="tight">
+          <li>В случае аннулированной лицензии за нарушение действующего законодательства повторное оформление <b>запрещено</b> (6.17).</li>
+          <li>Лицензия коллекционера может быть аннулирована уполномоченным лицом за нарушение статей Уголовного кодекса <b>4.1, 4.4, 6.3, 8.1, 8.6, 8.8, 13.6</b>, а также за совершение прочих тяжких и особо тяжких преступлений, совершённых с применением огнестрельного оружия (6.18).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="no-results" id="no-results">По запросу ничего не найдено. Попробуйте другой термин или номер статьи.</div>
+
+</main>
+
+<footer>
+  <div class="wrap" style="max-width:1080px;margin:0 auto;padding:0 20px">
+    Справочник составлен для ознакомления с основными положениями законодательства штата Сан-Андреас: Уголовного, Процессуального, Дорожного кодексов и Закона об обороте оружия. Не заменяет полные тексты первоисточников и не является источником права.
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tablinks button');
+  var pages=document.querySelectorAll('.page');
+  var search=document.getElementById('search');
+  var noRes=document.getElementById('no-results');
+  var hint=document.getElementById('hint-scope');
+  var tabNames={uk:'УК',pk:'Процессуальный кодекс',dk:'Дорожный кодекс',weapon:'Закон об оружии'};
+
+  function showTab(name){
+    pages.forEach(function(p){p.classList.toggle('active',p.dataset.page===name)});
+    tabs.forEach(function(b){b.classList.toggle('active',b.dataset.tab===name)});
+    hint.textContent=tabNames[name]||'все документы';
+    // пересчитать поиск по новой вкладке
+    runSearch();
+  }
+
+  tabs.forEach(function(b){
+    b.addEventListener('click',function(){showTab(b.dataset.tab)});
+  });
+
+  function currentPage(){
+    var active=document.querySelector('.page.active');
+    return active?active.dataset.page:null;
+  }
+
+  function inScope(el){
+    var scope=currentPage();
+    if(!scope) return true;
+    // поднимаемся до секции
+    var sec=el.closest('.page');
+    return scope==='all' || (sec && sec.dataset.page===scope);
+  }
+
+  function matches(el,q){
+    var source=el.dataset.search||el.textContent;
+    return source.toLowerCase().indexOf(q)!==-1;
+  }
+
+  function runSearch(){
+    var q=search.value.trim().toLowerCase();
+    var any=false;
+    var scope=currentPage();
+    pages.forEach(function(page){
+      if(page.dataset.page!==scope) return;
+      var articles=page.querySelectorAll('.article');
+      var cards=page.querySelectorAll(':scope > .card');
+      var hasArticles=articles.length>0;
+      if(hasArticles){
+        // скрываем отдельные статьи, а карточку показываем только если хоть одна её статья видима
+        articles.forEach(function(a){
+          var visible=!q || matches(a,q);
+          a.style.display=visible?'':'none';
+          if(visible) any=true;
+        });
+        cards.forEach(function(card){
+          var visible=!q;
+          if(q){
+            card.querySelectorAll('.article').forEach(function(a){
+              if(a.style.display!=='none') visible=true;
+            });
+            if(!visible && matches(card,q)) visible=true;
+          }
+          card.style.display=visible?'':'none';
+        });
+      }else{
+        cards.forEach(function(card){
+          var visible=!q || matches(card,q);
+          card.style.display=visible?'':'none';
+          if(visible) any=true;
+        });
+      }
+    });
+    if(q && !any) noRes.classList.add('show'); else noRes.classList.remove('show');
+  }
+
+  search.addEventListener('input',runSearch);
+  runSearch();
+})();
+</script>
+</body>
+</html>
